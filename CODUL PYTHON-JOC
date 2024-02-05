@@ -1,0 +1,48 @@
+import random
+
+def get_user_choice():
+    while True:
+        print("Alege: 1 - Piatra, 2 - Hârtie, 3 - Foarfece")
+        choice = input("Introdu opțiunea: ").lower()
+        
+        if choice in ['1', 'piatra']:
+            return 1
+        elif choice in ['2', 'hartie']:
+            return 2
+        elif choice in ['3', 'foarfece']:
+            return 3
+        else:
+            print("Te rog să introduci o opțiune validă (Piatra, Hârtie sau Foarfece).")
+
+def get_computer_choice():
+    return random.randint(1, 3)
+
+def determine_winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "Egalitate!"
+    elif (user_choice == 1 and computer_choice == 3) or \
+         (user_choice == 2 and computer_choice == 1) or \
+         (user_choice == 3 and computer_choice == 2):
+        return "Felicitări! Ai câștigat!"
+    else:
+        return "Ai pierdut! Mai încearcă."
+
+def main():
+    print("Bun venit la Piatra, Hârtie, Foarfece!")
+
+    while True:
+        user_choice = get_user_choice()
+        computer_choice = get_computer_choice()
+
+        print(f"Ai ales {'Piatra' if user_choice == 1 else 'Hârtie' if user_choice == 2 else 'Foarfece'}")
+        print(f"Computerul a ales {'Piatra' if computer_choice == 1 else 'Hârtie' if computer_choice == 2 else 'Foarfece'}")
+
+        result = determine_winner(user_choice, computer_choice)
+        print(result)
+
+        play_again = input("Dorești să joci din nou? (Da/Nu): ")
+        if play_again.lower() != 'da':
+            break
+
+if __name__ == "__main__":
+    main()
